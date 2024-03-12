@@ -1,16 +1,19 @@
 #include <fcntl.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <sys/mman.h>
 #include <sys/shm.h>
 #include <sys/wait.h>
 #include <unistd.h>
 
-int main() {
+int main(int argc, char **argv) {
   // n/ 2 if n is even
   // 3n + 1 if n is odd
 
   char *shm_name = "MyMemory";
   int fd = shm_open(shm_name, O_RDWR | O_CREAT);
+  int n = atoi(argv[1]);
 
   if (fd == -1) {
     printf("Could not create shared memory!");
@@ -36,7 +39,6 @@ int main() {
   // child
   if (pid == 0) {
     // Starting number for collatz
-    int n = 35;
 
     while (n != 1) {
 
