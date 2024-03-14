@@ -63,10 +63,11 @@ int main(int argc, char **argv) {
 
   int j = 0;
   while (j < i) {
-    printf("Number: %i\n", ptr[j]);
+    printf("%i ", ptr[j]);
     j++;
   }
 
   // close shared memory
   shm_unlink(shm_name);
+  return 0;
 }
